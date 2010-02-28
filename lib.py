@@ -1,4 +1,5 @@
-import operator
+from operator import mul
+from math import sqrt as msqrt
 
 def primes(min, max):
     plist = [2]
@@ -21,4 +22,30 @@ def factors(n):
             raise StopIteration
 
 def prod(lst):
-    return reduce(operator.mul, lst)
+    return reduce(mul, lst)
+
+def gcd(x, y):
+    rem = x % y
+    if rem == 0:
+        return y
+    else:
+        return gcd(y, rem)
+
+def sqrt(sqr):
+    rt = msqrt(sqr)
+    if int(rt) == rt:
+        return int(rt)
+    else:
+        return 0
+
+def pythtrips(max):
+    for m in range(2, max):
+        for n in range(1, m):
+            if not m & 1 and not n & 1:
+                continue
+            h = sqrt(n**2+m**2)
+            if not h:
+                continue
+            if gcd(m, n) != 1:
+                continue
+            yield (n,m,h)
