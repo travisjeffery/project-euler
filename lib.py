@@ -1,3 +1,5 @@
+import operator
+
 def primes(min, max):
     plist = [2]
     if 2 >= min: yield 2
@@ -18,4 +20,5 @@ def factors(n):
         if n == 1:
             raise StopIteration
 
-
+def prod(lst):
+    return reduce(operator.mul, lst)
