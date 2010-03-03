@@ -49,3 +49,46 @@ def pythtrips(max):
             if gcd(m, n) != 1:
                 continue
             yield (n,m,h)
+
+def appendseqs(seqs, seqs1):
+    result=[]
+    if not seqs:
+        for seq1 in seqs1:
+            result.append([seq1])
+    else:
+        for seq1 in seqs1:
+            result += [seq + [seq1] for seq in seqs]
+    return result
+
+def cartprod(l):
+    return reduce(appendseqs,l,[])
+    
+def primefacts(n):
+    i = 2
+    while i <= n**.5:
+        if n % i == 0:
+            l = primefacts(n/i)
+            l.append(i)
+            return l
+        i+=1
+    return [n]
+
+def facts(n):
+    p = primefacts(n)
+    factors={}
+    for p1 in p:
+        try:
+            factors[p1]+=1
+        except KeyError:
+            factors[p1]=1
+    return factors
+
+def divisors(n):
+    factors = facts(n)
+    divs = []
+    exps = [map(lambda x: k**x, xrange(0, factors[k]+1)) for k in factors.keys()]
+    lfacts = cartprod(exps)
+    for f in lfacts:
+        divs.append(reduce(lambda x, y: x*y, f, 1))
+    divs.sort()
+    return divs
