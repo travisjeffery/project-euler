@@ -1,5 +1,6 @@
 from operator import mul
 from math import sqrt as msqrt
+from math import factorial
 
 def primes(min, max):
     plist = [2]
@@ -92,3 +93,39 @@ def divisors(n):
         divs.append(reduce(lambda x, y: x*y, f, 1))
     divs.sort()
     return divs
+
+def choose(n, k):
+    return factorial(n)/(factorial(n-k)*factorial(k))
+
+def pascal(n):
+    if n == 1:
+        return [[1]]
+    else:
+        result = pascal(n-1)
+        erow = result[-1]
+        result.append([(x+y) for x, y in zip([0]+erow, erow + [0])])
+        return result
+
+def printpascal(tree):
+    if len(tree) == 0: return ''
+    line = '    ' * len(tree)
+    for cell in tree[0]:
+        line += '   %2i' % cell
+    return line + '\n' + printpascal(tree[1:])
+ 
+def pascal(n):
+    if n == 1:
+        return [[1]]
+    else:
+        result = pascal(n-1)
+        erow = result[-1]
+        result.append([(x+y) for x,y in zip([0]+erow, erow+[0])])
+        return result
+ 
+def pascalpri(tree):
+    if len(tree) == 0: return ''
+    line = '  ' * len(tree)
+    for cell in tree[0]:
+        line += '  %2i' % cell
+    return line + '\n' + pascalpri(tree[1:])
+ 
