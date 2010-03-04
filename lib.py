@@ -129,3 +129,22 @@ def pascalpri(tree):
         line += '  %2i' % cell
     return line + '\n' + pascalpri(tree[1:])
  
+
+def perms(str):
+    if len(str) <= 1:
+        yield str
+    else:
+        for perm in perms(str[1:]):
+            for i in xrange(len(perm)+1):
+                yield perm[:i] + str[0:1] + perm[i:]
+
+def permsl(l):
+    if len(l) <= 1:
+        yield [l]
+    yield [p[:i]+[l[0]]+p[i:] for i in xrange(len(l)) for p in permsl(l[1:])]
+
+memo= {0:0, 1:1}
+def fib(n):
+    if n not in memo:
+        memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]
