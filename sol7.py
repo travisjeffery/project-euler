@@ -1,3 +1,3 @@
-import lib
+from gauss import primes
 
-print list(lib.primes(1,1000000))[10000]
+print list(primes(1,1000000))[10000]

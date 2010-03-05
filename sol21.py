@@ -1,4 +1,4 @@
-from lib import divisors
+from gauss import divisors
 
 def d(n):
     return sum(divisors(n)[:-1])

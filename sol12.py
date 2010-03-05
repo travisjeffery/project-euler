@@ -1,4 +1,4 @@
-from lib import divisors
+from gauss import divisors
 
 i = 1
 

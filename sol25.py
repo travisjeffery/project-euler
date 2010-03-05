@@ -1,4 +1,4 @@
-from lib import fib
+from gauss import fib
 
 i = 1
 while 1:

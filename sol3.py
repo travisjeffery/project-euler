@@ -1,3 +1,3 @@
-import lib
+from gauss import factors
 
-print max(lib.factors(600851475143))
+print max(factors(600851475143))

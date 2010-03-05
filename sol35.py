@@ -1,5 +1,5 @@
-from lib import primes
-from lib import perms
+from gauss import primes
+from gauss import perms
 
 pl = [i for i in list(primes(2, 1000000))]
 

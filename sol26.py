@@ -1,4 +1,4 @@
-from lib import primes
+from gauss import primes
 
 for p in reversed(list(primes(2, 1000))):
     c = 1

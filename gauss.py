@@ -148,3 +148,67 @@ def fib(n):
     if n not in memo:
         memo[n] = fib(n-1) + fib(n-2)
     return memo[n]
+    
+def fact(n): return reduce(lambda x,y:x*y,range(1,n+1),1)
+
+def is_perm(a,b): return sorted(str(a)) == sorted(str(b))
+
+def is_palindromic(n): return str(n)==str(n)[::-1]
+
+def is_pandigital(n, s=9): n=str(n);return len(n)==s and not '1234567890'[:s].strip(n)
+
+def is_prime(n):
+    if n == 2 or n == 3: return True
+    if n < 2 or n%2 == 0: return False
+    if n < 9: return True
+    if n%3 == 0: return False
+    r = int(n**.5)
+    f = 5
+    while f <= r:
+        if n%f == 0: return False
+        if n%(f+2) == 0: return False
+        f +=6
+    return True
+
+def trial_division(n, bound=None):
+    if n == 1: return 1
+    for p in [2, 3, 5]:
+        if n%p == 0: return p
+    if bound == None: bound = n
+    dif = [6, 4, 2, 4, 2, 4, 6, 2]
+    m = 7; i = 1
+    while m <= bound and m*m <= n:
+        if n%m == 0:
+            return m
+        m += dif[i%8]
+        i += 1
+    return n
+
+def factor(n):
+    if n in [-1, 0, 1]: return []
+    if n < 0: n = -n
+    F = []
+    while n != 1:
+        p = trial_division(n)
+        e = 1
+        n /= p
+        while n%p == 0:
+            e += 1; n /= p
+        F.append((p,e))
+    F.sort()
+    return F
+
+def gcd(a, b):
+    if a < 0:  a = -a
+    if b < 0:  b = -b
+    if a == 0: return b
+    if b == 0: return a
+    while b != 0: 
+        (a, b) = (b, a%b)
+    return a
+
+def binomial(n, k):
+    nt = 1
+    for t in range(min(k, n-k)):
+        nt = nt*(n-t)//(t+1)
+    return nt
