@@ -212,3 +212,19 @@ def binomial(n, k):
     for t in range(min(k, n-k)):
         nt = nt*(n-t)//(t+1)
     return nt
+
+def base_change(x, base):
+    import string
+    digs = string.digits + string.lowercase
+    if x < 0: sign = -1
+    elif x==0: return '0'
+    else: sign = 1
+    x *= sign
+    digits = []
+    while x:
+        digits.append(digs[x % base])
+        x /= base
+    if sign < 0:
+        digits.append('-')
+    digits.reverse()
+    return ''.join(digits)
